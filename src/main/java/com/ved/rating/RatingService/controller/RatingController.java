@@ -1,6 +1,5 @@
 package com.ved.rating.RatingService.controller;
 
-
 import com.ved.rating.RatingService.model.Rating;
 import com.ved.rating.RatingService.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ public class RatingController {
     private RatingService ratingService;
 
     @PostMapping
-    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
+    public ResponseEntity<Rating> createRating(@RequestBody Rating rating) { // Changed to public
         Rating createdRating = ratingService.create(rating);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRating);
     }
