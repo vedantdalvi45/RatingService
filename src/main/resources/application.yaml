@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: RatingService
+
+  data:
+    mongodb:
+      uri: ${DATASOURCE_URL}
+      database: rating-service
+
+server:
+  port: 8084
