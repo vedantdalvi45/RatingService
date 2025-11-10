@@ -1,5 +1,6 @@
 package com.ved.rating.RatingService.service.impl;
 
+import com.ved.rating.RatingService.exception.ResourceNotFoundException;
 import com.ved.rating.RatingService.model.Rating;
 import com.ved.rating.RatingService.repository.RatingsRepository;
 import com.ved.rating.RatingService.service.RatingService;
@@ -26,11 +27,19 @@ public class RatingsServiceImpl implements RatingService {
 
     @Override
     public List<Rating> getAllRatingsByUserId(String userId) {
-        return ratingsRepository.findByUserId(userId);
+        List<Rating> ratings = ratingsRepository.findByUserId(userId);
+        if (ratings.isEmpty()) {
+            throw new ResourceNotFoundException("No ratings found for user with ID: " + userId);
+        }
+        return ratings;
     }
 
     @Override
     public List<Rating> getAllRatingsByHotelId(String hotelId) {
-        return ratingsRepository.findByHotelId(hotelId);
+        List<Rating> ratings = ratingsRepository.findByHotelId(hotelId);
+        if (ratings.isEmpty()) {
+            throw new ResourceNotFoundException("No ratings found for hotel with ID: " + hotelId);
+        }
+        return ratings;
     }
 }
